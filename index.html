@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+	<head>
+		<title>i was starting to get bored</title>
+		<style>
+			.drum-pad {
+				width: 4em;
+				height: 4em;
+				text-align: center;
+				background-color: black;
+				color: white;
+				padding: 1em;
+				background-clip: content-box;
+			}
+			#drum-machine {
+				display: flex;
+				width: 20em;
+				flex-wrap: wrap;
+			}
+			#display {
+				width: 20em;
+				background-color: blue;
+				color: white;
+				text-align: center;
+				height: 2em;
+			}
+		</style>
+		<script>
+			function init() {
+				Array.from(document.getElementsByClassName("drum-pad")).forEach(function (element) {
+					element.onclick = function(e) {
+						e.target.children[0].currentTime = 0;
+						e.target.children[0].play();
+						updateDisplay(e.target.children[0].id)
+					}
+				})
+				document.body.onkeypress = function(e) {
+					try {
+						let target = document.getElementById(e.key.toUpperCase())
+						target.currentTime = 0
+						target.play()
+						updateDisplay(target.id)
+					} catch {
+					}
+				}
+				return true;
+			}
+			function updateDisplay(character) {
+				let display = document.getElementById("display");
+				switch(character) {
+					case "Q": {
+						display.innerText = `Make the Q's!`;
+						break;
+					}
+					case "W": {
+						display.innerText = `W for Winning!`;
+						break;
+					}
+					case "E": {
+						display.innerText = `Electronic!`;
+						break;
+					}
+					case "A": {
+						display.innerText = `Awesome!`;
+						break;
+					}
+					case "S": {
+						display.innerText = `Send the charts flying!`;
+						break;
+					}
+					case "D": {
+						display.innerText = `Do the double!`;
+						break;
+					}
+					case "Z": {
+						display.innerText = `Funky Zebra!`;
+						break;
+					}
+					case "X": {
+						display.innerText = `X-treme!`;
+						break;
+					}
+					case "C": {
+						display.innerText = `Cool!`;
+						break;
+					}
+				}
+			}
+		</script>
+		<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js" async ></script>
+	</head>
+	<body onload="init()">
+		<div id="drum-machine">
+			<div class="drum-pad">Q<audio src="Q.mp3" class="clip" id="Q" preload="auto"></audio></div>
+			<div class="drum-pad">W<audio src="W.mp3" class="clip" id="W" preload="auto"></audio></div>
+			<div class="drum-pad">E<audio src="E.mp3" class="clip" id="E" preload="auto"></audio></div>
+			<div class="drum-pad">A<audio src="A.mp3" class="clip" id="A" preload="auto"></audio></div>
+			<div class="drum-pad">S<audio src="S.mp3" class="clip" id="S" preload="auto"></audio></div>
+			<div class="drum-pad">D<audio src="D.mp3" class="clip" id="D" preload="auto"></audio></div>
+			<div class="drum-pad">Z<audio src="Z.mp3" class="clip" id="Z" preload="auto"></audio></div>
+			<div class="drum-pad">X<audio src="X.mp3" class="clip" id="X" preload="auto"></audio></div>
+			<div class="drum-pad">C<audio src="C.mp3" class="clip" id="C" preload="auto"></audio></div>
+			<div id="display">drum machine thing</div>
+		</div>
+	</body>
+</html>
